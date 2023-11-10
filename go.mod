@@ -7,7 +7,6 @@ toolchain go1.21.4
 require (
 	github.com/GoogleCloudPlatform/functions-framework-go v1.8.0
 	github.com/aiteung/atapi v0.1.1
-	github.com/aiteung/atdb v0.1.3
 	github.com/aiteung/atmessage v0.1.0
 	github.com/aiteung/module v0.1.0
 	github.com/whatsauth/wa v0.0.4
@@ -19,6 +18,7 @@ require (
 	aidanwoods.dev/go-result v0.1.0 // indirect
 	filippo.io/edwards25519 v1.0.0 // indirect
 	github.com/Rhymen/go-whatsapp v0.1.1 // indirect
+	github.com/aiteung/atdb v0.1.3 // indirect
 	github.com/aiteung/musik v0.0.5 // indirect
 	github.com/andybalholm/brotli v1.0.6 // indirect
 	github.com/cloudevents/sdk-go/v2 v2.14.0 // indirect
