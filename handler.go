@@ -77,7 +77,7 @@ func Liveloc(w http.ResponseWriter, r *http.Request) {
 			IsGroup:  false,
 			Messages: reply,
 		}
-		resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
+		resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://cloud.wa.my.id/api/send/message/text")
 	} else {
 		resp.Response = "Secret Salah"
 	}
