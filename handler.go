@@ -17,12 +17,29 @@ func PostBalasan(w http.ResponseWriter, r *http.Request) {
 	var resp atmessage.Response
 	json.NewDecoder(r.Body).Decode(&msg)
 	if r.Header.Get("Secret") == os.Getenv("SECRET") {
-		dt := &wa.TextMessage{
-			To:       msg.Phone_number,
-			IsGroup:  false,
-			Messages: "Hai Hai Haiii kamuuuui " + msg.Alias_name + "rofinya lagi gaadaa \n aku giseuubott salam kenall yaaaa \n",
+		if msg.Message == "loc" || msg.Message == "Loc" {
+			location, err := ReverseGeocode(msg.Latitude, msg.Longitude)
+			if err != nil {
+				// Handle the error (e.g., log it) and set a default location name
+				location = "Unknown Location"
+			}
+
+			reply := fmt.Sprintf("Hai hai haiii kamu pasti lagi di %s \n Koordinatenya : %s - %s\n", location,
+				strconv.Itoa(int(msg.Longitude)), strconv.Itoa(int(msg.Latitude)))
+			dt := &wa.TextMessage{
+				To:       msg.Phone_number,
+				IsGroup:  false,
+				Messages: reply,
+			}
+			resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
+		} else {
+			dt := &wa.TextMessage{
+				To:       msg.Phone_number,
+				IsGroup:  false,
+				Messages: "Hai Hai Haiii kamuuuui " + msg.Alias_name + "\nrofinya lagi gaadaa \n aku giseuubott salam kenall yaaaa \n",
+			}
+			resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
 		}
-		resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
 	} else {
 		resp.Response = "Secret Salah"
 	}
