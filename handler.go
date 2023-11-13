@@ -35,6 +35,7 @@ func PostBalasan(w http.ResponseWriter, r *http.Request) {
 				Messages: reply,
 			}
 			resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
+
 		} else if msg.Message == "Babi" || msg.Message == "Anjing" || msg.Message == "goblok" {
 			dt := &wa.TextMessage{
 				To:       msg.Phone_number,
@@ -42,6 +43,7 @@ func PostBalasan(w http.ResponseWriter, r *http.Request) {
 				Messages: fmt.Sprintf("Ihh kakak %s kamu kasar bangett, aku jadi takut tauuu", msg.Alias_name),
 			}
 			resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
+
 		} else if msg.Message == "cantik" || msg.Message == "ganteng" || msg.Message == "cakep" {
 			dt := &wa.TextMessage{
 				To:       msg.Phone_number,
@@ -49,6 +51,7 @@ func PostBalasan(w http.ResponseWriter, r *http.Request) {
 				Messages: fmt.Sprintf("makasiihh kakak %s kamu jugaa cakep kooo", msg.Alias_name),
 			}
 			resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
+
 		} else {
 			randm := []string{
 				"Hai Hai Haiii kamuuuui " + msg.Alias_name + "\nrofinya lagi gaadaa \n aku giseuubott salam kenall yaaaa \n Cara penggunaan WhatsAuth ada di link berikut ini ya kak...\n" + link,
